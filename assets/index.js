@@ -11,6 +11,23 @@ resetGame();
 
 function checkColors(e) {
   // your code here
+  for (let i = 0; i < colorsBlocks.length; i++) {
+    colorsBlocks[i].addEventListener('click', ()=>{
+      console.log(colorsBlocks[i].style.backgroundColor);
+      console.log(colorsBlocks[i].style.backgroundColor)
+      if (colorsBlocks[i].style.backgroundColor === colors[pickedColor]) {
+        statusEl.textContent = "CORRECT!!"
+        resetBtn.textContent = "New game?";
+        changeColors();
+        header.style.backgroundColor = colors[pickedColor]
+        statusEl.style.backgroundColor = colors[pickedColor]
+      } else {
+        colorsBlocks[i].style.backgroundColor = 'black'
+      }
+    })
+ 
+  }
+
 }
 
 function resetGame() {
@@ -47,6 +64,15 @@ function random(r) {
 
 function setNumberOfTiles(e) {
   // your code here
+  for(let i = 0 ; i <= 1 ; i++){ 
+    diffEls[i].addEventListener('click', ()=>{
+    diffEls[0].classList.remove('active');
+    diffEls[1].classList.remove('active');
+    diffEls[i].classList.add('active');
+    diffEls[i].innerHTML === '6' ? n = 6 : n = 9;
+    resetGame()
+  })
+}
 }
 
 function createBlocks(num) {
@@ -61,5 +87,12 @@ function createBlocks(num) {
   colorsBlocks = document.querySelectorAll(".colors__block");
   for (var i = 0; i < colorsBlocks.length; i++) {
     colorsBlocks[i].addEventListener("click", checkColors);
+  }
+}
+
+// check ccolor of block ===color selected
+function changeColors(){
+  for(let i=0; i<colorsBlocks.length;i++){
+    colorsBlocks[i].style.backgroundColor=colors[pickedColor]
   }
 }
